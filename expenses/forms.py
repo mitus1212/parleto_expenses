@@ -1,5 +1,5 @@
 from django import forms
-from .models import Expense
+from .models import Expense, Category
 
 
 class ExpenseSearchForm(forms.ModelForm):
@@ -14,3 +14,13 @@ class ExpenseSearchForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for i in self.fields:
             self.fields[i].required = False
+
+class CategoryForm(forms.ModelForm):
+
+    class Meta:
+        model = Category
+        fields = ('name',)
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'textinputclass'}),
+        }

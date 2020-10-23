@@ -1,5 +1,5 @@
 import datetime
-
+from django.urls import reverse
 from django.db import models
 
 
@@ -9,6 +9,8 @@ class Category(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    def get_absolute_url(self):
+        return reverse("expenses:category-detail",kwargs={'pk':self.pk})
 
 class Expense(models.Model):
     class Meta:

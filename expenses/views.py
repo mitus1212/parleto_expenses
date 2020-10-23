@@ -1,9 +1,11 @@
 from django.views.generic.list import ListView
 
-from .forms import ExpenseSearchForm
-from .models import Expense
+from .forms import ExpenseSearchForm, CategoryForm
+from .models import Expense, Category
 from .reports import summary_per_category, summary_per_year_month
-
+from django.views.generic import (TemplateView,ListView,
+                                  DetailView,CreateView,
+                                  UpdateView,DeleteView)
 
 class ExpenseListView(ListView):
     model = Expense
@@ -32,3 +34,27 @@ class ExpenseListView(ListView):
             summary_per_category=summary_per_category(queryset),
             summary_per_year_month=summary_per_year_month(queryset),
             **kwargs)
+
+
+class CategoryListView(ListView):
+    login_url = '/category/'
+
+    model = Category
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        queryset = object_list if object_list is not None else self.object_list
+        
+        return super().get_context_data(
+            object_list=queryset,
+            **kwargs)
+
+
+class CreateCategoryView(CreateView):
+    redirect_field_name = 'expenses/expense_list.html'
+
+    form_class = CategoryForm
+
+    model = Category
+
+class CategoryDetailView(DetailView):
+    model = Category
