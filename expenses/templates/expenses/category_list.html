@@ -6,19 +6,19 @@
 <table border="1">
       <thead>
         <tr>
-          <th>no.</th>
+          <th>pk</th>
           <th>category</th>
-          <th>description</th>
-          <th>date</th>
+          <th>actions</th>
+          <th>expenses amount</th>
         </tr>
       </thead>
       <tbody>
       {% for obj in object_list %}
         <tr>
-          <td>{{ page_obj.start_index|add:forloop.counter0 }}.</td>
+          <td>{{obj.pk}}</td>
           <td><a href="{% url 'expenses:category-detail' pk=obj.pk %}">{{ obj.name|default:"-" }}</a></td>
-          <td></td>
-          <td></td>
+          <td><a href="{% url 'expenses:category-update' pk=obj.pk %}">update</a> <a href="{% url 'expenses:category-remove' pk=obj.pk %}">delete</a></td>
+          <td>{{ obj.expenses_amount}}</td>
         </tr>
       {% empty %}
         <tr>

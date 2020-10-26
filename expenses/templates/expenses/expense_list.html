@@ -4,11 +4,6 @@
 
 <a href="{% url 'expenses:expense-create' %}">add</a>
 <a href="{% url 'expenses:category-list' %}">categories</a>
-<form method="get" action="">
-  {{form.as_p}}
-  <button type="submit">search</button>
-</form>
-<br>
 <table border="1">
   {% if form.cleaned_data.grouping == "date" %}
     <thead>
@@ -92,5 +87,7 @@
     {% for year_month, total in summary_per_year_month.items %}<td>{{year_month|date:"Y-m"}}: {{total|floatformat:2}}</td>{% endfor %}
   </tr>
 </table>
+<p>Total amount spent: {{ all_expenses_amount}}</p>
+<a href="{% if request.get_full_path == '/' %}?ordering=-date{% endif %}"><button>Sort By Date</button></a>
 
 {% endblock %}

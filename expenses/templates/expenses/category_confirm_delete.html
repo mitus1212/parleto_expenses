@@ -1,0 +1,7 @@
+<form action="" method="post">
+    {% csrf_token %}
+    <p>{{ object.expenses_amount }} expenses will be deleted.</p>
+    <p>Are you sure you want to delete "{{ object }}" category?</p>
+    <input class='btn btn-danger' type="submit" value="Confirm" />
+</form>
+

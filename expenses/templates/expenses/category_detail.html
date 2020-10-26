@@ -1,4 +1,6 @@
 
 <a href="{% url 'expenses:category-list' %}" >Back</a>
-<p>{{ category.name }}</p>
+<p>Name: {{ category.name }}</p>
+<p>Sum: {{ category.expenses_sum }}</p>
+<p>Expenses amount: {{ category.expenses_amount}}</p>
 

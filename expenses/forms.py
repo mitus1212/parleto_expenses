@@ -16,7 +16,7 @@ class ExpenseSearchForm(forms.ModelForm):
             self.fields[i].required = False
 
 class CategoryForm(forms.ModelForm):
-
+            
     class Meta:
         model = Category
         fields = ('name',)
